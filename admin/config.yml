@@ -1,0 +1,3044 @@
+backend:
+  name: git-gateway
+  accept_roles:
+    - admin
+    - editor
+media_folder: theme/assets/images
+public_folder: /assets/images
+collections:
+  - name: pages
+    label: Pages
+    identifier_field: title
+    extension: md
+    create: false
+    delete: false
+    slug: '{{slug}}'
+    editor:
+      preview: false
+    folder: cms/pages
+    fields:
+      - label: Title
+        name: title
+        widget: string
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '{{slug}}.html'
+      - &ref_0
+        label: Seo
+        name: seo
+        widget: object
+        collapsed: true
+        fields:
+          - label: Title
+            name: title
+            widget: string
+            required: false
+          - label: Description
+            name: description
+            widget: string
+            required: false
+          - label: No index
+            name: noindex
+            widget: boolean
+            default: false
+            required: false
+          - label: Open Graph Title
+            name: og:title
+            widget: string
+            required: false
+          - label: Open Graph Image
+            name: og:image
+            widget: image
+            required: false
+            media_library:
+              config:
+                multiple: false
+          - label: Twitter Title
+            name: twitter:title
+            widget: string
+            default: summary
+            required: false
+          - label: Twitter Card
+            name: twitter:card
+            widget: string
+            default: summary
+            required: false
+          - label: Twitter Site
+            name: twitter:site
+            widget: string
+            required: false
+          - label: Twitter Creator
+            name: twitter:creator
+            widget: string
+            required: false
+          - label: Additional HTML tags
+            name: additional_tags
+            widget: text
+            required: false
+  - name: kunstler_fur_katalog_seite
+    label: Kunstler Katalogseites
+    folder: cms/kunstler-fur-katalog-seite
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - label: New field
+        name: body
+        widget: markdown
+        required: false
+      - hint: ''
+        name: f_new-field-3
+        label: New field 3
+        widget: string
+        required: false
+      - hint: ''
+        name: f_new-field-2
+        label: New field 2
+        widget: string
+        required: false
+      - hint: ''
+        name: f_new-field-4
+        label: New field 4
+        widget: markdown
+        required: false
+      - hint: ''
+        name: f_image
+        label: image
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_kunstler-link
+        label: kunstler-link
+        widget: relation
+        required: false
+        collection: kunstler
+        value_field: cms/kunstler/{{slug}}.md
+        search_fields:
+          - slug
+          - name
+        display_fields:
+          - title
+        multiple: false
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: kunstler-fur-katalog-seite
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[kunstler-fur-katalog-seite].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+  - name: art_consulting
+    label: Art-consultings
+    folder: cms/art-consulting
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: f_gallerie
+        label: gallerie
+        widget: list
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_text
+        label: text
+        widget: string
+        required: false
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: art-consulting
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[art-consulting].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+  - name: kunstler
+    label: Kunstlers
+    folder: cms/kunstler
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - label: text1
+        name: body
+        widget: markdown
+        required: false
+      - hint: ''
+        name: f_subtitle
+        label: subtitle
+        widget: string
+        required: false
+      - hint: ''
+        name: f_image
+        label: image
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_text2
+        label: text2
+        widget: markdown
+        required: false
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: kunstler
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[kunstler].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+  - name: product
+    label: Products
+    folder: cms/product
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: variation-properties
+        label: Variation Properties
+        widget: list
+        required: false
+        summary: '{{name}}'
+        fields:
+          - hint: ''
+            name: slug
+            label: Slug
+            widget: hidden
+            required: true
+          - hint: ''
+            name: name
+            label: Name
+            widget: string
+            required: true
+          - hint: ''
+            name: values
+            label: Values
+            widget: list
+            required: true
+            summary: '{{name}}'
+            fields:
+              - hint: ''
+                name: slug
+                label: Slug
+                widget: hidden
+                required: true
+              - hint: ''
+                name: name
+                label: Name
+                widget: string
+                required: true
+      - hint: ''
+        name: variations
+        label: Variations
+        widget: list
+        required: true
+        summary: '{{title}}'
+        min: 1
+        fields:
+          - hint: Slug of the variation
+            name: slug
+            label: Slug
+            widget: string
+            required: true
+          - hint: Default variation?
+            name: default
+            label: Default
+            widget: boolean
+            required: true
+          - hint: ''
+            name: variation-properties
+            label: SKU Values
+            widget: prop-values
+            required: false
+          - hint: ''
+            name: title
+            label: Name
+            widget: string
+            required: true
+          - hint: ''
+            name: f_main-image
+            label: Main Image
+            widget: object
+            required: false
+            fields:
+              - hint: ''
+                name: url
+                label: Image
+                widget: image
+                required: false
+                allow_multiple: false
+              - hint: Image Alt
+                name: alt
+                label: alt
+                widget: string
+                required: false
+          - hint: ''
+            name: f_more-images
+            label: More Images
+            widget: list
+            required: false
+            fields:
+              - hint: ''
+                name: url
+                label: Image
+                widget: image
+                required: false
+                allow_multiple: false
+              - hint: Image Alt
+                name: alt
+                label: alt
+                widget: string
+                required: false
+          - hint: ''
+            name: f_price
+            label: Price
+            widget: price
+            required: true
+          - hint: Compare at Price must be higher than price
+            name: f_compare-at-price
+            label: Compare at price
+            widget: price
+            required: false
+          - hint: ''
+            name: f_download-files
+            label: Downloads
+            widget: list
+            required: false
+            fields:
+              - hint: ''
+                name: url
+                label: Image
+                widget: image
+                required: false
+                allow_multiple: false
+              - hint: Image Alt
+                name: alt
+                label: alt
+                widget: string
+                required: false
+          - hint: ''
+            name: f_width
+            label: Width
+            widget: number
+            required: false
+          - hint: ''
+            name: f_length
+            label: Length
+            widget: number
+            required: false
+          - hint: ''
+            name: f_height
+            label: Height
+            widget: number
+            required: false
+          - hint: ''
+            name: f_weight
+            label: Weight
+            widget: number
+            required: false
+          - hint: ''
+            name: f_sku
+            label: SKU
+            widget: string
+            required: false
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - hint: Add this product to one or more categories.
+        name: f_category
+        label: Categories
+        widget: relation
+        required: false
+        collection: category
+        value_field: cms/category/{{slug}}.md
+        search_fields:
+          - slug
+          - name
+        display_fields:
+          - title
+        multiple: true
+      - hint: ''
+        name: f_description
+        label: Description
+        widget: string
+        required: false
+      - hint: ''
+        name: f_shippable
+        label: Requires Shipping
+        widget: boolean
+        required: false
+      - hint: ''
+        name: f_ec-product-type
+        label: Product type
+        widget: select
+        required: false
+        options:
+          - label: Physical
+            value: Physical
+          - label: Digital
+            value: Digital
+          - label: Service
+            value: Service
+          - label: Membership
+            value: Membership
+          - label: Advanced
+            value: Advanced
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: product
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[product].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+  - name: category
+    label: Categories
+    folder: cms/category
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: category
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[category].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+  - name: kunstausstellung
+    label: Kunstausstellungs
+    folder: cms/kunstausstellung
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - label: Beschreibung1 2
+        name: body
+        widget: markdown
+        required: false
+      - hint: ''
+        name: f_zeit
+        label: Zeit
+        widget: string
+        required: false
+      - hint: ''
+        name: f_farbe
+        label: Farbe
+        widget: color
+        required: false
+        enableAlpha: true
+        allowInput: true
+      - hint: ''
+        name: f_beschreibung1
+        label: Beschreibung1
+        widget: string
+        required: false
+      - hint: ''
+        name: f_beschreibung2
+        label: Beschreibung2
+        widget: string
+        required: false
+      - hint: ''
+        name: f_beschreibung3
+        label: Beschreibung3
+        widget: string
+        required: false
+      - hint: ''
+        name: f_beschreibung4
+        label: Beschreibung4
+        widget: string
+        required: false
+      - hint: ''
+        name: f_beschreibung5
+        label: Beschreibung5
+        widget: string
+        required: false
+      - hint: ''
+        name: f_beschreibung6
+        label: Beschreibung6
+        widget: string
+        required: false
+      - hint: ''
+        name: f_beschreibung2-3
+        label: Beschreibung2 3
+        widget: markdown
+        required: false
+      - hint: ''
+        name: f_beschreibung3-4
+        label: Beschreibung3 4
+        widget: markdown
+        required: false
+      - hint: ''
+        name: f_beschreibung4-5
+        label: Beschreibung4 5
+        widget: markdown
+        required: false
+      - hint: ''
+        name: f_beschreibung5-6
+        label: Beschreibung5 6
+        widget: markdown
+        required: false
+      - hint: ''
+        name: f_galerie
+        label: galerie
+        widget: list
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_galerie2
+        label: galerie2
+        widget: list
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_galerie3
+        label: galerie3
+        widget: list
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_galerie4
+        label: galerie4
+        widget: list
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_links
+        label: links
+        widget: string
+        required: false
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: kunstausstellung
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[kunstausstellung].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+  - name: ausstellung2
+    label: Kunstausstellung Katalogseites
+    folder: cms/ausstellung2
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: f_zeit
+        label: Zeit
+        widget: string
+        required: false
+      - hint: ''
+        name: f_farbe
+        label: Farbe
+        widget: color
+        required: false
+        enableAlpha: true
+        allowInput: true
+      - hint: ''
+        name: f_background-image
+        label: background-image
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_ausstellung-links
+        label: ausstellung-links
+        widget: relation
+        required: false
+        collection: kunstausstellung
+        value_field: cms/kunstausstellung/{{slug}}.md
+        search_fields:
+          - slug
+          - name
+        display_fields:
+          - title
+        multiple: false
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: ausstellung2
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[ausstellung2].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+  - label: Theme Settings
+    name: settings
+    identifier_field: title
+    extension: json
+    create: false
+    delete: false
+    slug: '{{slug}}'
+    editor:
+      preview: false
+    files:
+      - label: General
+        name: site
+        file: cms/_data/settings/site.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: General
+          - hint: Full domain url (needed for a correct sitemap file)
+            name: domain
+            label: Domain
+            widget: string
+            required: false
+          - name: favicon
+            label: Favicon
+            widget: image
+            allow_multiple: false
+            required: false
+          - name: apple_touch_icon
+            label: Apple Touch Icon
+            widget: image
+            allow_multiple: false
+            required: false
+          - name: header_additional_content
+            label: Additional Content Header
+            hint: Content here will be placed before </head> tag
+            widget: text
+            required: false
+          - name: footer_additional_content
+            label: Additional Content Footer
+            hint: Content here will be placed before </body> tag
+            widget: text
+            required: false
+          - name: images_optimization
+            label: Images Optimization
+            widget: object
+            collapsed: false
+            fields:
+              - label: Image Formats
+                name: formats
+                widget: select
+                multiple: true
+                options:
+                  - label: Avif
+                    value: avif
+                  - label: Webp
+                    value: webp
+              - label: Image Dimensions
+                name: dimensions
+                widget: select
+                multiple: true
+                options:
+                  - label: '500'
+                    value: 500
+                  - label: '800'
+                    value: 800
+                  - label: '1080'
+                    value: 1080
+                  - label: '1600'
+                    value: 1600
+                  - label: '2000'
+                    value: 2000
+                  - label: '2600'
+                    value: 2600
+      - label: Colors
+        name: colors
+        file: cms/_data/colors.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Colors
+      - label: Texts
+        name: texts
+        file: cms/_data/texts.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Texts
+          - hint: 'Original text: aktuell, key: -3793a366'
+            label: Text
+            name: '-3793a366'
+            widget: string
+          - hint: 'Original text: künstler, key: 4000159b'
+            label: Text
+            name: 4000159b
+            widget: string
+          - hint: 'Original text: ausstellungen, key: -4186260e'
+            label: Text
+            name: '-4186260e'
+            widget: string
+          - hint: 'Original text: artconsulting, key: 3a721f19'
+            label: Text
+            name: 3a721f19
+            widget: string
+          - hint: 'Original text: info, key: 3164ae'
+            label: Text
+            name: 3164ae
+            widget: string
+          - hint: 'Original text: kontakt, key: -201700e0'
+            label: Text
+            name: '-201700e0'
+            widget: string
+          - hint: 'Original text: dse, key: 185b6'
+            label: Text
+            name: 185b6
+            widget: string
+          - hint: 'Original text: susanne hofer, key: -70dc5a3f'
+            label: Text
+            name: '-70dc5a3f'
+            widget: string
+          - hint: 'Original text: flunkern, key: -7d3fd88b'
+            label: Text
+            name: '-7d3fd88b'
+            widget: string
+          - hint: >-
+              Original text: jeden samstag laden wir ein zum aperitif 14 - 17
+              uhr, key: -757b0113
+            label: Text
+            name: '-757b0113'
+            widget: string
+          - hint: 'Original text: besichtigung bis 31. januar 2021, key: 2d341664'
+            label: Text
+            name: 2d341664
+            widget: string
+          - hint: 'Original text: No items found., key: 3d503d2b'
+            label: Text
+            name: 3d503d2b
+            widget: string
+          - hint: 'Original text: galerie marianne grob, key: 79099e8a'
+            label: Text
+            name: 79099e8a
+            widget: string
+          - hint: 'Original text: amerbachstrasse 10, key: 27471867'
+            label: Text
+            name: '27471867'
+            widget: string
+          - hint: 'Original text: ch - 4057 basel, key: -2fd80f19'
+            label: Text
+            name: '-2fd80f19'
+            widget: string
+          - hint: 'Original text: tel 004161 - 535 13 40, key: -1d1e0b05'
+            label: Text
+            name: '-1d1e0b05'
+            widget: string
+          - hint: 'Original text: mobil 004178 - 953 72 58, key: 36d8a327'
+            label: Text
+            name: 36d8a327
+            widget: string
+          - hint: 'Original text: info@galeriemariannegrob.com, key: -4df56b7'
+            label: Text
+            name: '-4df56b7'
+            widget: string
+          - hint: 'Original text: impressum assistenz, key: -5eb3f281'
+            label: Text
+            name: '-5eb3f281'
+            widget: string
+          - hint: 'Original text: alexis di santo, key: -1a7a5ba8'
+            label: Text
+            name: '-1a7a5ba8'
+            widget: string
+          - hint: 'Original text: ‍, key: 200d'
+            label: Text
+            name: 200d
+            widget: string
+          - hint: 'Original text: web design, key: 1e87b80a'
+            label: Text
+            name: 1e87b80a
+            widget: string
+          - hint: "Original text: alexis di santo \_Instagram: ale_and_sandra, key: -7016b6c0"
+            label: Text
+            name: '-7016b6c0'
+            widget: string
+          - hint: "Original text: hanchen xing \_Website: hanchenxing.com, key: -78c02fda"
+            label: Text
+            name: '-78c02fda'
+            widget: string
+          - hint: 'Original text: Name, key: 24eeab'
+            label: Text
+            name: 24eeab
+            widget: string
+          - hint: 'Original text: Email Address, key: -2b7010d0'
+            label: Text
+            name: '-2b7010d0'
+            widget: string
+          - hint: 'Original text: Betreff, key: 564cbe24'
+            label: Text
+            name: 564cbe24
+            widget: string
+          - hint: 'Original text: Nachricht, key: -49db8f60'
+            label: Text
+            name: '-49db8f60'
+            widget: string
+          - hint: >-
+              Original text: Thank you! Your submission has been received!, key:
+              5a0ea5a1
+            label: Text
+            name: 5a0ea5a1
+            widget: string
+          - hint: >-
+              Original text: Oops! Something went wrong while submitting the
+              form., key: -7c112e99
+            label: Text
+            name: '-7c112e99'
+            widget: string
+          - hint: >-
+              Original text: Diese Datenschutzerklärung klärt Sie über die Art,
+              den Umfang und Zweck der Verarbeitung von personenbezogenen Daten
+              (nachfolgend kurz „Daten“) innerhalb unseres Onlineangebotes und
+              der mit ihm verbundenen Webseiten, Funktionen und Inhalte sowie
+              externen Onlinepräsenzen, wie z.B. unser Social Media Profile auf.
+              (nachfolgend gemeinsam bezeichnet als „Onlineangebot“). Im
+              Hinblick auf die verwendeten Begrifflichkeiten, wie z.B.
+              „Verarbeitung“ oder „Verantwortlicher“ verweisen wir auf die
+              Definitionen im Art. 4 der Datenschutzgrundverordnung
+              (DSGVO).Verantwortlicher, key: -7953aef0
+            label: Text
+            name: '-7953aef0'
+            widget: text
+          - hint: 'Original text: Galerie Marianne Grob, key: 157b926a'
+            label: Text
+            name: 157b926a
+            widget: string
+          - hint: 'Original text: Amerbachstrasse 10, key: -6af52b79'
+            label: Text
+            name: '-6af52b79'
+            widget: string
+          - hint: 'Original text: CH - 4057 Basel, key: 573e84c7'
+            label: Text
+            name: 573e84c7
+            widget: string
+          - hint: 'Original text: Tel: 004161 - 535 13 40, key: 73e526f7'
+            label: Text
+            name: 73e526f7
+            widget: string
+          - hint: 'Original text: Mobil: 004178 - 953 72 58, key: -3d4ac1cd'
+            label: Text
+            name: '-3d4ac1cd'
+            widget: string
+          - hint: >-
+              Original text: info@galeriemariannegrob.comArten der verarbeiteten
+              Daten:, key: 248d7e0c
+            label: Text
+            name: 248d7e0c
+            widget: string
+          - hint: >-
+              Original text: - Bestandsdaten (z.B., Namen, Adressen)., key:
+              4c0ee272
+            label: Text
+            name: 4c0ee272
+            widget: string
+          - hint: >-
+              Original text: - Kontaktdaten (z.B., E-Mail, Telefonnummern).,
+              key: -4f8e91a
+            label: Text
+            name: '-4f8e91a'
+            widget: string
+          - hint: >-
+              Original text: - Inhaltsdaten (z.B., Texteingaben, Fotografien,
+              Videos)., key: -103e7c1b
+            label: Text
+            name: '-103e7c1b'
+            widget: string
+          - hint: >-
+              Original text: - Nutzungsdaten (z.B., besuchte Webseiten,
+              Interesse an Inhalten, Zugriffszeiten)., key: -68535c7a
+            label: Text
+            name: '-68535c7a'
+            widget: string
+          - hint: >-
+              Original text: - Meta-/Kommunikationsdaten (z.B.,
+              Geräte-Informationen, IP-Adressen).Zweck der Verarbeitung, key:
+              14bb12f3
+            label: Text
+            name: 14bb12f3
+            widget: text
+          - hint: >-
+              Original text: - Zurverfügungstellung des Onlineangebotes, seiner
+              Funktionen und Inhalte., key: c0b7682
+            label: Text
+            name: c0b7682
+            widget: string
+          - hint: >-
+              Original text: - Beantwortung von Kontaktanfragen und
+              Kommunikation mit Nutzern., key: 4e940761
+            label: Text
+            name: '4e940761'
+            widget: string
+          - hint: 'Original text: - Sicherheitsmaßnahmen., key: -7e210fae'
+            label: Text
+            name: '-7e210fae'
+            widget: string
+          - hint: >-
+              Original text: - Reichweitenmessung/MarketingVerwendete
+              Begrifflichkeiten, key: -2cc3f2e3
+            label: Text
+            name: '-2cc3f2e3'
+            widget: string
+          - hint: >-
+              Original text: „Personenbezogene Daten“ sind alle Informationen,
+              die sich auf eine identifizierte oder identifizierbare natürliche
+              Person (im Folgenden „betroffene Person“) beziehen; als
+              identifizierbar wird eine natürliche Person angesehen, die direkt
+              oder indirekt, insbesondere mittels Zuordnung zu einer Kennung wie
+              einem Namen, zu einer Kennnummer, zu Standortdaten, zu einer
+              Online-Kennung (z.B. Cookie) oder zu einem oder mehreren
+              besonderen Merkmalen identifiziert werden kann, die Ausdruck der
+              physischen, physiologischen, genetischen, psychischen,
+              wirtschaftlichen, kulturellen oder sozialen Identität dieser
+              natürlichen Person sind., key: 525d13a1
+            label: Text
+            name: 525d13a1
+            widget: text
+          - hint: >-
+              Original text: „Verarbeitung“ ist jeder mit oder ohne Hilfe
+              automatisierter Verfahren ausgeführten Vorgang oder jede solche
+              Vorgangsreihe im Zusammenhang mit personenbezogenen Daten. Der
+              Begriff reicht weit und umfasst praktisch jeden Umgang mit Daten.,
+              key: a4c4750
+            label: Text
+            name: a4c4750
+            widget: text
+          - hint: >-
+              Original text: Als „Verantwortlicher“ wird die natürliche oder
+              juristische Person, Behörde, Einrichtung oder andere Stelle, die
+              allein oder gemeinsam mit anderen über die Zwecke und Mittel der
+              Verarbeitung von personenbezogenen Daten entscheidet,
+              bezeichnet.Maßgebliche Rechtsgrundlagen, key: -2d8c53d5
+            label: Text
+            name: '-2d8c53d5'
+            widget: text
+          - hint: >-
+              Original text: Nach Maßgabe des Art. 13 DSGVO teilen wir Ihnen die
+              Rechtsgrundlagen unserer Datenverarbeitungen mit. Sofern die
+              Rechtsgrundlage in der Datenschutzerklärung nicht genannt wird,
+              gilt Folgendes: Die Rechtsgrundlage für die Einholung von
+              Einwilligungen ist Art. 6 Abs. 1 lit. a und Art. 7 DSGVO, die
+              Rechtsgrundlage für die Verarbeitung zur Erfüllung unserer
+              Leistungen und Durchführung vertraglicher Maßnahmen sowie
+              Beantwortung von Anfragen ist Art. 6 Abs. 1 lit. b DSGVO, die
+              Rechtsgrundlage für die Verarbeitung zur Erfüllung unserer
+              rechtlichen Verpflichtungen ist Art. 6 Abs. 1 lit. c DSGVO, und
+              die Rechtsgrundlage für die Verarbeitung zur Wahrung unserer
+              berechtigten Interessen ist Art. 6 Abs. 1 lit. f DSGVO. Für den
+              Fall, dass lebenswichtige Interessen der betroffenen Person oder
+              einer anderen natürlichen Person eine Verarbeitung
+              personenbezogener Daten erforderlich machen, dient Art. 6 Abs. 1
+              lit. d DSGVO als Rechtsgrundlage.Sicherheitsmaßnahmen, key:
+              -64f4d67b
+            label: Text
+            name: '-64f4d67b'
+            widget: text
+          - hint: >-
+              Original text: Wir bitten Sie sich regelmäßig über den Inhalt
+              unserer Datenschutzerklärung zu informieren. Wir passen die
+              Datenschutzerklärung an, sobald die Änderungen der von uns
+              durchgeführten Datenverarbeitungen dies erforderlich machen. Wir
+              informieren Sie, sobald durch die Änderungen eine
+              Mitwirkungshandlung Ihrerseits (z.B. Einwilligung) oder eine
+              sonstige individuelle Benachrichtigung erforderlich
+              wird.Zusammenarbeit mit Auftragsverarbeitern und Dritten, key:
+              71e7bc2e
+            label: Text
+            name: 71e7bc2e
+            widget: text
+          - hint: >-
+              Original text: Sofern wir im Rahmen unserer Verarbeitung Daten
+              gegenüber anderen Personen und Unternehmen (Auftragsverarbeitern
+              oder Dritten) offenbaren, sie an diese übermitteln oder ihnen
+              sonst Zugriff auf die Daten gewähren, erfolgt dies nur auf
+              Grundlage einer gesetzlichen Erlaubnis (z.B. wenn eine
+              Übermittlung der Daten an Dritte, wie an Zahlungsdienstleister,
+              gem. Art. 6 Abs. 1 lit. b DSGVO zur Vertragserfüllung erforderlich
+              ist), Sie eingewilligt haben, eine rechtliche Verpflichtung dies
+              vorsieht oder auf Grundlage unserer berechtigten Interessen (z.B.
+              beim Einsatz von Beauftragten, Webhostern, etc.)., key: -797f1e6
+            label: Text
+            name: '-797f1e6'
+            widget: text
+          - hint: >-
+              Original text: Sofern wir Dritte mit der Verarbeitung von Daten
+              auf Grundlage eines sog. „Auftragsverarbeitungsvertrages“
+              beauftragen, geschieht dies auf Grundlage des Art. 28 DSGVO., key:
+              23e859d8
+            label: Text
+            name: 23e859d8
+            widget: text
+          - hint: 'Original text: dae, key: 18388'
+            label: Text
+            name: '18388'
+            widget: string
+          - hint: 'Original text: schlossberg thun, key: 69ce389a'
+            label: Text
+            name: 69ce389a
+            widget: string
+          - hint: 'Original text: bank von tobel münchen, key: -49169e74'
+            label: Text
+            name: '-49169e74'
+            widget: string
+          - hint: 'Original text: credit suisse berlin, key: 98afabd'
+            label: Text
+            name: 98afabd
+            widget: string
+          - hint: 'Original text: krankenhaus lichtenberg, key: -5f2ea4d6'
+            label: Text
+            name: '-5f2ea4d6'
+            widget: string
+          - hint: 'Original text: privatwohnung berlin, key: -21ce58ec'
+            label: Text
+            name: '-21ce58ec'
+            widget: string
+          - hint: 'Original text: privatwohnung st. moritz, key: 33f063a4'
+            label: Text
+            name: 33f063a4
+            widget: string
+          - hint: 'Original text: postbank berlin, key: -25cf6e9a'
+            label: Text
+            name: '-25cf6e9a'
+            widget: string
+          - hint: 'Original text: rechtsanwaltskanzlei berlin, key: 48c87eb1'
+            label: Text
+            name: 48c87eb1
+            widget: string
+          - hint: 'Original text: ugbi berlin, key: -298d4b7'
+            label: Text
+            name: '-298d4b7'
+            widget: string
+          - hint: 'Original text: wohnhaus muri bei bern, key: 6ac418f'
+            label: Text
+            name: 6ac418f
+            widget: string
+          - hint: 'Original text: wohnhaus weiningen, key: 6a0714d'
+            label: Text
+            name: 6a0714d
+            widget: string
+          - hint: 'Original text: ribag safenwil, key: 79de88'
+            label: Text
+            name: 79de88
+            widget: string
+          - hint: 'Original text: wohnhaus luzern, key: -42609605'
+            label: Text
+            name: '-42609605'
+            widget: string
+          - hint: 'Original text: bollag, key: -5276288d'
+            label: Text
+            name: '-5276288d'
+            widget: string
+          - hint: 'Original text: jo acherman, key: -5c5066be'
+            label: Text
+            name: '-5c5066be'
+            widget: string
+          - hint: 'Original text: romy troxler, key: -2ec7eca5'
+            label: Text
+            name: '-2ec7eca5'
+            widget: string
+          - hint: 'Original text: thomas muff, key: b733404'
+            label: Text
+            name: b733404
+            widget: string
+          - hint: 'Original text: marcel scheible - cécile wick, key: 75f5b375'
+            label: Text
+            name: 75f5b375
+            widget: string
+          - hint: 'Original text: schwarzweiss XI, key: -12ab5920'
+            label: Text
+            name: '-12ab5920'
+            widget: string
+          - hint: 'Original text: pia gisler, key: 5f0d2240'
+            label: Text
+            name: 5f0d2240
+            widget: string
+          - hint: 'Original text: susanna niederer, key: -5bb5447d'
+            label: Text
+            name: '-5bb5447d'
+            widget: string
+          - hint: 'Original text: positionen II, key: 3fdd806e'
+            label: Text
+            name: 3fdd806e
+            widget: string
+          - hint: 'Original text: basel genf, key: -ab96ba5'
+            label: Text
+            name: '-ab96ba5'
+            widget: string
+          - hint: 'Original text: alexander johannes kraut, key: 564ac53f'
+            label: Text
+            name: 564ac53f
+            widget: string
+          - hint: 'Original text: van duiven & achermann, key: 57854531'
+            label: Text
+            name: '57854531'
+            widget: string
+          - hint: 'Original text: jäggi & kupczyk, key: -ee8d63c'
+            label: Text
+            name: '-ee8d63c'
+            widget: string
+          - hint: 'Original text: basel luxembourg, key: -bec3b15'
+            label: Text
+            name: '-bec3b15'
+            widget: string
+          - hint: 'Original text: berlin luzern, key: -7d5e9a12'
+            label: Text
+            name: '-7d5e9a12'
+            widget: string
+          - hint: 'Original text: berlin konstanz, key: -591b06a0'
+            label: Text
+            name: '-591b06a0'
+            widget: string
+          - hint: 'Original text: berlin amsterdam, key: -5b4c4aa8'
+            label: Text
+            name: '-5b4c4aa8'
+            widget: string
+          - hint: 'Original text: urs jaeggi, key: -529f3b5b'
+            label: Text
+            name: '-529f3b5b'
+            widget: string
+          - hint: 'Original text: alisch - kirjuchina - hatori, key: 2e15d4ed'
+            label: Text
+            name: 2e15d4ed
+            widget: string
+          - hint: 'Original text: albert merz & claude touba, key: -4ec3739f'
+            label: Text
+            name: '-4ec3739f'
+            widget: string
+          - hint: 'Original text: vera rothamel, key: 5da7b386'
+            label: Text
+            name: 5da7b386
+            widget: string
+          - hint: 'Original text: johannes lacher, key: 69215cfb'
+            label: Text
+            name: 69215cfb
+            widget: string
+          - hint: 'Original text: toni wirthmüller, key: -35faff7a'
+            label: Text
+            name: '-35faff7a'
+            widget: string
+          - hint: 'Original text: ingeborg lüscher, key: e402c1a'
+            label: Text
+            name: e402c1a
+            widget: string
+          - hint: 'Original text: jochen stenschke, key: 74e5899b'
+            label: Text
+            name: 74e5899b
+            widget: string
+          - hint: 'Original text: friederike van duiven, key: 4b0feb6a'
+            label: Text
+            name: 4b0feb6a
+            widget: string
+          - hint: 'Original text: helmut metzner, key: -762d9406'
+            label: Text
+            name: '-762d9406'
+            widget: string
+          - hint: 'Original text: emil siemeister, key: f89f3e5'
+            label: Text
+            name: f89f3e5
+            widget: string
+          - hint: 'Original text: albergaria, key: -77e30414'
+            label: Text
+            name: '-77e30414'
+            widget: string
+          - hint: 'Original text: wolfgang kupczyk, key: 2b4fe754'
+            label: Text
+            name: 2b4fe754
+            widget: string
+          - hint: 'Original text: barbara camilla tucholski, key: 44521356'
+            label: Text
+            name: '44521356'
+            widget: string
+          - hint: 'Original text: jo achermann, key: -2dbc7094'
+            label: Text
+            name: '-2dbc7094'
+            widget: string
+          - hint: 'Original text: gabriela albergaria, key: 3498a7f1'
+            label: Text
+            name: 3498a7f1
+            widget: string
+          - hint: 'Original text: kathleen alisch, key: -d1014d2'
+            label: Text
+            name: '-d1014d2'
+            widget: string
+          - hint: 'Original text: valérie balmer, key: 1d2171e7'
+            label: Text
+            name: 1d2171e7
+            widget: string
+          - hint: 'Original text: andreas frick, key: 7b30fd21'
+            label: Text
+            name: 7b30fd21
+            widget: string
+          - hint: 'Original text: barbara jäggi, key: -3d487010'
+            label: Text
+            name: '-3d487010'
+            widget: string
+          - hint: 'Original text: viktoria kirjuchina, key: 20aaf1c1'
+            label: Text
+            name: 20aaf1c1
+            widget: string
+          - hint: 'Original text: albert merz, key: -71e4c870'
+            label: Text
+            name: '-71e4c870'
+            widget: string
+          - hint: 'Original text: marcel scheible, key: 33ae2c93'
+            label: Text
+            name: 33ae2c93
+            widget: string
+          - hint: 'Original text: ulrich studer, key: -4da609d6'
+            label: Text
+            name: '-4da609d6'
+            widget: string
+          - hint: 'Original text: cécile wick, key: -236f804b'
+            label: Text
+            name: '-236f804b'
+            widget: string
+          - hint: 'Original text: raffaela zenoni, key: -26b90441'
+            label: Text
+            name: '-26b90441'
+            widget: string
+          - hint: 'Original text: auswahl ausstellung, key: 3eff6076'
+            label: Text
+            name: 3eff6076
+            widget: string
+          - hint: 'Original text: presse, key: -3a6b1b7e'
+            label: Text
+            name: '-3a6b1b7e'
+            widget: string
+          - hint: 'Original text: dezember 2019 kunstbulletin, key: 2dfa3384'
+            label: Text
+            name: 2dfa3384
+            widget: string
+          - hint: 'Original text: april 2019 kunstbulletin, key: 2c10346c'
+            label: Text
+            name: 2c10346c
+            widget: string
+          - hint: 'Original text: 26. mai 2018 basler zeitung, key: -8b96269'
+            label: Text
+            name: '-8b96269'
+            widget: string
+          - hint: >-
+              Original text: 29. oktober 2013 neue luzerner zeitung, key:
+              b67c14f
+            label: Text
+            name: b67c14f
+            widget: string
+          - hint: 'Original text: 30. juni 2011 bild, key: 62cac536'
+            label: Text
+            name: 62cac536
+            widget: string
+          - hint: 'Original text: 05. februar 2010 die welt, key: 2e0ae199'
+            label: Text
+            name: 2e0ae199
+            widget: string
+          - hint: >-
+              Original text: ich gründete die galerie marianne grob 1985 in
+              luzern und erweiterte sie 1993 durch die eröffnung der berliner
+              galerie in kreuzberg. 1999 bis 2013 führte ich die galerie in der
+              linienstrasse in berlin mitte und realisierte in den grosszügigen
+              und attraktiven räumen eine vielzahl von erfolgreichen
+              ausstellungen in zusammenarbeit mit meinen künstlern. derzeit
+              kuratiere ich kunstprojekte im in- und ausland und binde die werke
+              in innovative raumkonzepte ein. galerie marianne grob unterwegs -
+              on tour : berlin - amsterdam – luzern – luxemburg - konstanz- …
+              from room to room. seit meinem umzug nach basel 2014 zeige ich am
+              neuen standort in zwei kleinen aber feinen räumen periodisch
+              ausstellungen mit werken meiner künstler.messebeteiligungen: art
+              cologne, artforum berlin, kunstmesse frankfurt, kunst zürich.,
+              key: 72672d23
+            label: Text
+            name: 72672d23
+            widget: text
+          - hint: 'Original text: Page Not Found, key: -40b0787c'
+            label: Text
+            name: '-40b0787c'
+            widget: string
+          - hint: >-
+              Original text: The page you are looking for doesn't exist or has
+              been moved, key: 556d64d8
+            label: Text
+            name: 556d64d8
+            widget: string
+      - label: Links
+        name: links
+        file: cms/_data/links.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Links
+          - hint: >-
+              Original link: https://galeriemariannegrob.webflow.io/, key:
+              581ce908
+            label: Link
+            name: 581ce908
+            widget: string
+          - hint: 'Original link: /, key: 2f'
+            label: Link
+            name: 2f
+            widget: string
+          - hint: 'Original link: /kunstler, key: -6cd8c87d'
+            label: Link
+            name: '-6cd8c87d'
+            widget: string
+          - hint: 'Original link: /ausstellung, key: 698be7fa'
+            label: Link
+            name: 698be7fa
+            widget: string
+          - hint: >-
+              Original link:
+              https://galeriemariannegrob-new.webflow.io/art-consulting/ut-est-accusamus-beatae,
+              key: 7d03f47f
+            label: Link
+            name: 7d03f47f
+            widget: string
+          - hint: 'Original link: /info, key: 2c7b55d'
+            label: Link
+            name: 2c7b55d
+            widget: string
+          - hint: 'Original link: #, key: 23'
+            label: Link
+            name: '23'
+            widget: string
+          - hint: 'Original link: /contact, key: 4b0e6111'
+            label: Link
+            name: 4b0e6111
+            widget: string
+          - hint: 'Original link: /dae, key: 16e0f9'
+            label: Link
+            name: 16e0f9
+            widget: string
+          - hint: >-
+              Original link:
+              https://galeriemariannegrob.webflow.io/art-consulting/inventore-in-et-nemo,
+              key: -5eec6485
+            label: Link
+            name: '-5eec6485'
+            widget: string
+          - hint: >-
+              Original link:
+              https://galeriemariannegrob.webflow.io/art-consulting/non, key:
+              -60fea69a
+            label: Link
+            name: '-60fea69a'
+            widget: string
+          - hint: >-
+              Original link:
+              https://galeriemariannegrob.webflow.io/art-consulting/qui-temporibus-exercitationem,
+              key: -4a2d2441
+            label: Link
+            name: '-4a2d2441'
+            widget: string
+          - hint: >-
+              Original link:
+              https://galeriemariannegrob.webflow.io/art-consulting/error-velit,
+              key: -359e58e4
+            label: Link
+            name: '-359e58e4'
+            widget: string
+          - hint: >-
+              Original link:
+              https://galeriemariannegrob.webflow.io/art-consulting/eius, key:
+              4125a6c9
+            label: Link
+            name: 4125a6c9
+            widget: string
+          - hint: >-
+              Original link:
+              https://galeriemariannegrob.webflow.io/art-consulting/temporibus-a,
+              key: 28897289
+            label: Link
+            name: '28897289'
+            widget: string
+          - hint: >-
+              Original link:
+              https://galeriemariannegrob.webflow.io/art-consulting/aut-accusantium-est,
+              key: 43312a5e
+            label: Link
+            name: 43312a5e
+            widget: string
+          - hint: >-
+              Original link:
+              https://galeriemariannegrob.webflow.io/art-consulting/dolores-voluptatum,
+              key: 73500cf3
+            label: Link
+            name: 73500cf3
+            widget: string
+          - hint: >-
+              Original link:
+              https://galeriemariannegrob.webflow.io/art-consulting/ut, key:
+              4f73a8e6
+            label: Link
+            name: 4f73a8e6
+            widget: string
+          - hint: >-
+              Original link:
+              https://galeriemariannegrob.webflow.io/art-consulting/ut-est-accusamus-beatae,
+              key: -61593a94
+            label: Link
+            name: '-61593a94'
+            widget: string
+          - hint: >-
+              Original link:
+              https://galeriemariannegrob.webflow.io/art-consulting/maiores,
+              key: -2a922541
+            label: Link
+            name: '-2a922541'
+            widget: string
+          - hint: >-
+              Original link:
+              https://galeriemariannegrob.webflow.io/art-consulting/a, key:
+              341c813a
+            label: Link
+            name: 341c813a
+            widget: string
+          - hint: >-
+              Original link:
+              http://galeriemariannegrob.webflow.io/kunstausstellung/jo-achermann,
+              key: 4f659e25
+            label: Link
+            name: 4f659e25
+            widget: string
+          - hint: >-
+              Original link:
+              http://galeriemariannegrob.webflow.io/kunstausstellung/romy-troxler,
+              key: 2d0eaad4
+            label: Link
+            name: 2d0eaad4
+            widget: string
+          - hint: >-
+              Original link:
+              http://galeriemariannegrob.webflow.io/kunstausstellung/thomas-muff,
+              key: 362578ab
+            label: Link
+            name: 362578ab
+            widget: string
+          - hint: >-
+              Original link:
+              http://galeriemariannegrob.webflow.io/kunstausstellung/scheible-wick,
+              key: 2864cf42
+            label: Link
+            name: 2864cf42
+            widget: string
+          - hint: >-
+              Original link:
+              http://galeriemariannegrob.webflow.io/kunstausstellung/schwarzweiss-xi,
+              key: -51032e39
+            label: Link
+            name: '-51032e39'
+            widget: string
+          - hint: >-
+              Original link:
+              http://galeriemariannegrob.webflow.io/kunstausstellung/pia-gsisler,
+              key: 3885318
+            label: Link
+            name: '3885318'
+            widget: string
+          - hint: >-
+              Original link:
+              http://galeriemariannegrob.webflow.io/kunstausstellung/susanna-niederer,
+              key: -60e4d44a
+            label: Link
+            name: '-60e4d44a'
+            widget: string
+          - hint: >-
+              Original link:
+              http://galeriemariannegrob.webflow.io/kunstausstellung/positionen-ii,
+              key: -289f962b
+            label: Link
+            name: '-289f962b'
+            widget: string
+          - hint: >-
+              Original link:
+              http://galeriemariannegrob.webflow.io/kunstausstellung/basel-genf,
+              key: 3126e78e
+            label: Link
+            name: 3126e78e
+            widget: string
+          - hint: >-
+              Original link:
+              http://galeriemariannegrob.webflow.io/kunstausstellung/alexander-johannes-kraut,
+              key: -76ff8e3b
+            label: Link
+            name: '-76ff8e3b'
+            widget: string
+          - hint: >-
+              Original link:
+              http://galeriemariannegrob.webflow.io/kunstausstellung/susanne-hofer,
+              key: 3cd55a6e
+            label: Link
+            name: 3cd55a6e
+            widget: string
+          - hint: >-
+              Original link:
+              http://galeriemariannegrob.webflow.io/kunstausstellung/van-duiven-achermann,
+              key: -44ccdf8f
+            label: Link
+            name: '-44ccdf8f'
+            widget: string
+          - hint: >-
+              Original link:
+              http://galeriemariannegrob.webflow.io/kunstausstellung/jaggi-kupczyk,
+              key: 7284cfce
+            label: Link
+            name: 7284cfce
+            widget: string
+          - hint: >-
+              Original link:
+              http://galeriemariannegrob.webflow.io/kunstausstellung/basel-luxembourg,
+              key: -8f85a22
+            label: Link
+            name: '-8f85a22'
+            widget: string
+          - hint: >-
+              Original link:
+              http://galeriemariannegrob.webflow.io/kunstausstellung/berlin-luzern,
+              key: -362ae32b
+            label: Link
+            name: '-362ae32b'
+            widget: string
+          - hint: >-
+              Original link:
+              http://galeriemariannegrob.webflow.io/kunstausstellung/berlin-konstanz,
+              key: -ff96d79
+            label: Link
+            name: '-ff96d79'
+            widget: string
+          - hint: >-
+              Original link:
+              http://galeriemariannegrob.webflow.io/kunstausstellung/berlin-amsterdam,
+              key: 7fc54111
+            label: Link
+            name: 7fc54111
+            widget: string
+          - hint: >-
+              Original link:
+              http://galeriemariannegrob.webflow.io/kunstausstellung/urs-jaeggi,
+              key: -67c51768
+            label: Link
+            name: '-67c51768'
+            widget: string
+          - hint: >-
+              Original link:
+              http://galeriemariannegrob.webflow.io/kunstausstellung/alisch-kirjuchina-hatori,
+              key: 5f1b3a13
+            label: Link
+            name: 5f1b3a13
+            widget: string
+          - hint: >-
+              Original link:
+              http://galeriemariannegrob.webflow.io/kunstausstellung/albert-merz-claude-touba,
+              key: -7ee0b600
+            label: Link
+            name: '-7ee0b600'
+            widget: string
+          - hint: >-
+              Original link:
+              http://galeriemariannegrob.webflow.io/kunstausstellung/vera-rothamel,
+              key: 7ca40b2d
+            label: Link
+            name: 7ca40b2d
+            widget: string
+          - hint: >-
+              Original link:
+              http://galeriemariannegrob.webflow.io/kunstausstellung/johannes-lacher,
+              key: -2585aa9e
+            label: Link
+            name: '-2585aa9e'
+            widget: string
+          - hint: >-
+              Original link:
+              http://galeriemariannegrob.webflow.io/kunstausstellung/toni-wirthmuller,
+              key: -660d3188
+            label: Link
+            name: '-660d3188'
+            widget: string
+          - hint: >-
+              Original link:
+              http://galeriemariannegrob.webflow.io/kunstausstellung/ingeborg-luscher,
+              key: -1e57fb46
+            label: Link
+            name: '-1e57fb46'
+            widget: string
+          - hint: >-
+              Original link:
+              http://galeriemariannegrob.webflow.io/kunstausstellung/jochen-stenschke,
+              key: 4ff71554
+            label: Link
+            name: 4ff71554
+            widget: string
+          - hint: >-
+              Original link:
+              http://galeriemariannegrob.webflow.io/kunstausstellung/friederike-van-duiven,
+              key: -30e883e2
+            label: Link
+            name: '-30e883e2'
+            widget: string
+          - hint: >-
+              Original link:
+              http://galeriemariannegrob.webflow.io/kunstausstellung/helmut-metzner,
+              key: 291591f3
+            label: Link
+            name: 291591f3
+            widget: string
+          - hint: >-
+              Original link:
+              http://galeriemariannegrob.webflow.io/kunstausstellung/emil-siemeister,
+              key: 60cefdcc
+            label: Link
+            name: 60cefdcc
+            widget: string
+          - hint: >-
+              Original link:
+              http://galeriemariannegrob.webflow.io/kunstausstellung/albergaria,
+              key: -3cb9e26e
+            label: Link
+            name: '-3cb9e26e'
+            widget: string
+          - hint: >-
+              Original link:
+              http://galeriemariannegrob.webflow.io/kunstausstellung/wolfgang-kupczyk,
+              key: -1aea0433
+            label: Link
+            name: '-1aea0433'
+            widget: string
+          - hint: >-
+              Original link:
+              http://galeriemariannegrob.webflow.io/kunstausstellung/barbara-camilla-tucholski,
+              key: -58a414ea
+            label: Link
+            name: '-58a414ea'
+            widget: string
+          - hint: >-
+              Original link:
+              https://galeriemariannegrob.webflow.io/kunstler/raffaela-zenoni,
+              key: -4ba446a7
+            label: Link
+            name: '-4ba446a7'
+            widget: string
+          - hint: >-
+              Original link:
+              https://galeriemariannegrob.webflow.io/kunstler/toni-wirthmuller,
+              key: 67afafa5
+            label: Link
+            name: 67afafa5
+            widget: string
+          - hint: >-
+              Original link:
+              https://galeriemariannegrob.webflow.io/kunstler/cecile-wick, key:
+              1360c713
+            label: Link
+            name: 1360c713
+            widget: string
+          - hint: >-
+              Original link:
+              https://galeriemariannegrob.webflow.io/kunstler/friederike-van-duiven,
+              key: 76094f11
+            label: Link
+            name: 76094f11
+            widget: string
+          - hint: >-
+              Original link:
+              https://galeriemariannegrob.webflow.io/kunstler/barbara-camilla-tucholski,
+              key: a750c89
+            label: Link
+            name: a750c89
+            widget: string
+          - hint: >-
+              Original link:
+              https://galeriemariannegrob.webflow.io/kunstler/romy-troxler, key:
+              6a9d2a81
+            label: Link
+            name: 6a9d2a81
+            widget: string
+          - hint: >-
+              Original link:
+              https://galeriemariannegrob.webflow.io/kunstler/ulrich-studer,
+              key: 6dcf2304
+            label: Link
+            name: 6dcf2304
+            widget: string
+          - hint: >-
+              Original link:
+              https://galeriemariannegrob.webflow.io/kunstler/jochen-stenschke,
+              key: 1db3f681
+            label: Link
+            name: 1db3f681
+            widget: string
+          - hint: >-
+              Original link:
+              https://galeriemariannegrob.webflow.io/kunstler/marcel-scheible,
+              key: -19747513
+            label: Link
+            name: '-19747513'
+            widget: string
+          - hint: >-
+              Original link:
+              https://galeriemariannegrob.webflow.io/kunstler/vera-rothamel,
+              key: -f1a7ee0
+            label: Link
+            name: '-f1a7ee0'
+            widget: string
+          - hint: >-
+              Original link:
+              https://galeriemariannegrob.webflow.io/kunstler/susanna-niederer,
+              key: 6cd80ce3
+            label: Link
+            name: 6cd80ce3
+            widget: string
+          - hint: >-
+              Original link:
+              https://galeriemariannegrob.webflow.io/kunstler/albert-merz, key:
+              -45362d16
+            label: Link
+            name: '-45362d16'
+            widget: string
+          - hint: >-
+              Original link:
+              https://galeriemariannegrob.webflow.io/kunstler/thomas-muff, key:
+              3821cf5e
+            label: Link
+            name: 3821cf5e
+            widget: string
+          - hint: >-
+              Original link:
+              https://galeriemariannegrob.webflow.io/kunstler/helmut-metzner,
+              key: 3d02da60
+            label: Link
+            name: 3d02da60
+            widget: string
+          - hint: >-
+              Original link:
+              https://galeriemariannegrob.webflow.io/kunstler/ingeborg-luscher,
+              key: -509b1a19
+            label: Link
+            name: '-509b1a19'
+            widget: string
+          - hint: >-
+              Original link:
+              https://galeriemariannegrob.webflow.io/kunstler/johannes-lacher,
+              key: 44361a95
+            label: Link
+            name: 44361a95
+            widget: string
+          - hint: >-
+              Original link:
+              https://galeriemariannegrob.webflow.io/kunstler/wolfgang-kupczyk,
+              key: -4d2d2306
+            label: Link
+            name: '-4d2d2306'
+            widget: string
+          - hint: >-
+              Original link:
+              https://galeriemariannegrob.webflow.io/kunstler/alexander-johannes-kraut,
+              key: 1053d5f2
+            label: Link
+            name: 1053d5f2
+            widget: string
+          - hint: >-
+              Original link:
+              https://galeriemariannegrob.webflow.io/kunstler/viktoria-kirjuchina,
+              key: -3e6cada5
+            label: Link
+            name: '-3e6cada5'
+            widget: string
+          - hint: >-
+              Original link:
+              https://galeriemariannegrob.webflow.io/kunstler/barbara-jaggi,
+              key: -1b90d20d
+            label: Link
+            name: '-1b90d20d'
+            widget: string
+          - hint: >-
+              Original link:
+              https://galeriemariannegrob.webflow.io/kunstler/urs-jaeggi, key:
+              -5730907b
+            label: Link
+            name: '-5730907b'
+            widget: string
+          - hint: >-
+              Original link:
+              https://galeriemariannegrob.webflow.io/kunstler/susanne-hofer,
+              key: -4ee92f9f
+            label: Link
+            name: '-4ee92f9f'
+            widget: string
+          - hint: >-
+              Original link:
+              https://galeriemariannegrob.webflow.io/kunstler/pia-gisler, key:
+              5a7bcd20
+            label: Link
+            name: 5a7bcd20
+            widget: string
+          - hint: >-
+              Original link:
+              https://galeriemariannegrob.webflow.io/kunstler/andreas-frick,
+              key: -62dbd83f
+            label: Link
+            name: '-62dbd83f'
+            widget: string
+          - hint: >-
+              Original link:
+              https://galeriemariannegrob.webflow.io/kunstler/valerie-balmer,
+              key: 73a76fc3
+            label: Link
+            name: 73a76fc3
+            widget: string
+          - hint: >-
+              Original link:
+              https://galeriemariannegrob.webflow.io/kunstler/kathleen-alisch,
+              key: -31fb5738
+            label: Link
+            name: '-31fb5738'
+            widget: string
+          - hint: >-
+              Original link:
+              https://galeriemariannegrob.webflow.io/kunstler/gabriela-albergaria,
+              key: -2a7ef775
+            label: Link
+            name: '-2a7ef775'
+            widget: string
+          - hint: >-
+              Original link:
+              https://galeriemariannegrob.webflow.io/kunstler/jo-achermann, key:
+              -730be22e
+            label: Link
+            name: '-730be22e'
+            widget: string
+          - hint: 'Original link: /inf-presse, key: -4cb6e6a3'
+            label: Link
+            name: '-4cb6e6a3'
+            widget: string
+          - hint: >-
+              Original link: /assets/documents/15.11._kunstbulletin_2.pdf, key:
+              -375416c4
+            label: Link
+            name: '-375416c4'
+            widget: string
+          - hint: >-
+              Original link: /assets/images/kunstbulletin_19_2.jpeg, key:
+              3ca5d70e
+            label: Link
+            name: 3ca5d70e
+            widget: string
+          - hint: >-
+              Original link:
+              /assets/images/18.05.26_baslerzeitung_kultur_web.jpg, key:
+              43418962
+            label: Link
+            name: '43418962'
+            widget: string
+          - hint: >-
+              Original link:
+              /assets/documents/13.10.29_neueluzernerzeitung_kopie_1-1.pdf, key:
+              -2d79a86a
+            label: Link
+            name: '-2d79a86a'
+            widget: string
+          - hint: >-
+              Original link: /assets/documents/11.06.30_bild_1.pdf, key:
+              79834e09
+            label: Link
+            name: '79834e09'
+            widget: string
+          - hint: >-
+              Original link: /assets/documents/10.02.05_diewelt_1.pdf, key:
+              428ce423
+            label: Link
+            name: 428ce423
+            widget: string
+      - label: Images
+        name: images
+        file: cms/_data/images.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Images
+          - label: Image
+            name: i14fd52f3
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: i615a4df7
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: i4288b0cc
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: i5816015
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 2f64db2c
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: i66ceae52
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: i3d130b00
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 5abf094a
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: i155ff77a
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-71f92ff9'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '0'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-5ae44680'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-2b1beb3c'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+      - label: eCommerce
+        name: ecommerce
+        file: cms/_data/settings/ecommerce.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: eCommerce
+          - label: Currencies and Formats
+            name: currencies_and_formats
+            widget: object
+            fields:
+              - hint: >-
+                  Template used to format the price, you can use following
+                  placeholders: {amount}, {currencyCode}, {symbol}
+                name: template
+                label: Price Template
+                widget: string
+                required: true
+              - hint: Character to divide decimals
+                name: decimal
+                label: Decimal
+                widget: string
+                required: true
+              - hint: Character to group amount
+                name: group
+                label: Group
+                widget: string
+                required: true
+              - hint: Number of fraction digits
+                name: fractionDigits
+                label: Fraction Digits
+                widget: number
+                required: true
+                value_type: int
+              - hint: Hide decimals for whole prices
+                name: hideDecimalForWholeNumbers
+                label: Hide decimals
+                widget: boolean
+                required: false
+              - hint: ''
+                name: currencies
+                label: Currencies
+                widget: list
+                required: true
+                min: 1
+                fields:
+                  - hint: Currency Code (3 char) all lowercase
+                    name: currencyCode
+                    label: Currency Code
+                    widget: string
+                    required: true
+                  - hint: ''
+                    name: symbol
+                    label: Symbol
+                    widget: string
+                    required: true
+          - label: Snipcart
+            name: snipcart
+            widget: object
+            fields:
+              - hint: Public Api Key
+                name: apiKey
+                label: Api Key
+                widget: string
+                required: true
+          - label: Snipcart Style
+            name: css
+            widget: object
+            fields:
+              - hint: 'Original Font Family: Open Sans,sans-serif'
+                name: main-font
+                label: Main font
+                widget: string
+                required: true
+              - hint: 'Original Font Family: Montserrat,sans-serif'
+                name: heading-font
+                label: Heading font
+                widget: string
+                required: true
+              - hint: 'Original color: #f7f7f8'
+                name: bgColor-alt
+                label: BgColor alt
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #fff'
+                name: bgColor-badge
+                label: BgColor badge
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #fceae8'
+                name: bgColor-buttonDanger-active
+                label: BgColor buttonDanger active
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #fceae8'
+                name: bgColor-buttonDanger-focus
+                label: BgColor buttonDanger focus
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #fdefed'
+                name: bgColor-buttonDanger-hover
+                label: BgColor buttonDanger hover
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #1a4db3'
+                name: bgColor-buttonPrimary
+                label: BgColor buttonPrimary
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #1a4db3'
+                name: bgColor-buttonPrimary-active
+                label: BgColor buttonPrimary active
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #1a4db3'
+                name: bgColor-buttonPrimary-focus
+                label: BgColor buttonPrimary focus
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #0d59f2'
+                name: bgColor-buttonPrimary-hover
+                label: BgColor buttonPrimary hover
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #e7f6fe'
+                name: bgColor-buttonSecondary-active
+                label: BgColor buttonSecondary active
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #ecf8fe'
+                name: bgColor-buttonSecondary-focus
+                label: BgColor buttonSecondary focus
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #ecf8fe'
+                name: bgColor-buttonSecondary-hover
+                label: BgColor buttonSecondary hover
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #fff'
+                name: bgColor-default
+                label: BgColor default
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #fff'
+                name: bgColor-input
+                label: BgColor input
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #0aa7f5'
+                name: bgColor-input-checked
+                label: BgColor input checked
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #f1f2f4'
+                name: bgColor-input-disabled
+                label: BgColor input disabled
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #fff'
+                name: bgColor-input-focus
+                label: BgColor input focus
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #fff'
+                name: bgColor-input-hover
+                label: BgColor input hover
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: transparent'
+                name: bgColor-link
+                label: BgColor link
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #d9f0fc'
+                name: bgColor-link-focus
+                label: BgColor link focus
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #f1f2f4'
+                name: bgColor-modal
+                label: BgColor modal
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: transparent'
+                name: borderColor-badge
+                label: BorderColor badge
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: transparent'
+                name: borderColor-badge-active
+                label: BorderColor badge active
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #e3e6e8'
+                name: borderColor-badge-disabled
+                label: BorderColor badge disabled
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: transparent'
+                name: borderColor-buttonDanger
+                label: BorderColor buttonDanger
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: currentColor'
+                name: borderColor-buttonDanger-active
+                label: BorderColor buttonDanger active
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: transparent'
+                name: borderColor-buttonDanger-disabled
+                label: BorderColor buttonDanger disabled
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: transparent'
+                name: borderColor-buttonDanger-error
+                label: BorderColor buttonDanger error
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: transparent'
+                name: borderColor-buttonDanger-focus
+                label: BorderColor buttonDanger focus
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: transparent'
+                name: borderColor-buttonDanger-hover
+                label: BorderColor buttonDanger hover
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: transparent'
+                name: borderColor-buttonDanger-success
+                label: BorderColor buttonDanger success
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: transparent'
+                name: borderColor-buttonPrimary
+                label: BorderColor buttonPrimary
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: currentColor'
+                name: borderColor-buttonPrimary-active
+                label: BorderColor buttonPrimary active
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: transparent'
+                name: borderColor-buttonPrimary-disabled
+                label: BorderColor buttonPrimary disabled
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: currentColor'
+                name: borderColor-buttonPrimary-error
+                label: BorderColor buttonPrimary error
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: transparent'
+                name: borderColor-buttonPrimary-focus
+                label: BorderColor buttonPrimary focus
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: transparent'
+                name: borderColor-buttonPrimary-hover
+                label: BorderColor buttonPrimary hover
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: currentColor'
+                name: borderColor-buttonPrimary-success
+                label: BorderColor buttonPrimary success
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: transparent'
+                name: borderColor-buttonSecondary
+                label: BorderColor buttonSecondary
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: currentColor'
+                name: borderColor-buttonSecondary-active
+                label: BorderColor buttonSecondary active
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: transparent'
+                name: borderColor-buttonSecondary-disabled
+                label: BorderColor buttonSecondary disabled
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: transparent'
+                name: borderColor-buttonSecondary-error
+                label: BorderColor buttonSecondary error
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: transparent'
+                name: borderColor-buttonSecondary-focus
+                label: BorderColor buttonSecondary focus
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: transparent'
+                name: borderColor-buttonSecondary-hover
+                label: BorderColor buttonSecondary hover
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: transparent'
+                name: borderColor-buttonSecondary-success
+                label: BorderColor buttonSecondary success
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #e3e6e8'
+                name: borderColor-default
+                label: BorderColor default
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #e3e6e8'
+                name: borderColor-input
+                label: BorderColor input
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #0aa7f5'
+                name: borderColor-input-checked
+                label: BorderColor input checked
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #e3e6e8'
+                name: borderColor-input-disabled
+                label: BorderColor input disabled
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #e85a4a'
+                name: borderColor-input-error
+                label: BorderColor input error
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #0aa7f5'
+                name: borderColor-input-focus
+                label: BorderColor input focus
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #0aa7f5'
+                name: borderColor-input-hover
+                label: BorderColor input hover
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: currentColor'
+                name: borderColor-link
+                label: BorderColor link
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: currentColor'
+                name: borderColor-link-active
+                label: BorderColor link active
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: currentColor'
+                name: borderColor-link-focus
+                label: BorderColor link focus
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: currentColor'
+                name: borderColor-link-hover
+                label: BorderColor link hover
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: currentColor'
+                name: borderColor-success
+                label: BorderColor success
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #8f99a3'
+                name: color-alt
+                label: Color alt
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #0d59f2'
+                name: color-badge
+                label: Color badge
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #0d59f2'
+                name: color-badge-active
+                label: Color badge active
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #2e3338'
+                name: color-badge-disabled
+                label: Color badge disabled
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #9e2215'
+                name: color-buttonDanger
+                label: Color buttonDanger
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #9e2215'
+                name: color-buttonDanger-active
+                label: Color buttonDanger active
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #8f99a3'
+                name: color-buttonDanger-disabled
+                label: Color buttonDanger disabled
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #e85a4a'
+                name: color-buttonDanger-error
+                label: Color buttonDanger error
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #9e2215'
+                name: color-buttonDanger-focus
+                label: Color buttonDanger focus
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #e85a4a'
+                name: color-buttonDanger-hover
+                label: Color buttonDanger hover
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #29c768'
+                name: color-buttonDanger-success
+                label: Color buttonDanger success
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #fff'
+                name: color-buttonPrimary
+                label: Color buttonPrimary
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #fff'
+                name: color-buttonPrimary-active
+                label: Color buttonPrimary active
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #e3e6e8'
+                name: color-buttonPrimary-disabled
+                label: Color buttonPrimary disabled
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #fff'
+                name: color-buttonPrimary-error
+                label: Color buttonPrimary error
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #fff'
+                name: color-buttonPrimary-focus
+                label: Color buttonPrimary focus
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #fff'
+                name: color-buttonPrimary-hover
+                label: Color buttonPrimary hover
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #fff'
+                name: color-buttonPrimary-success
+                label: Color buttonPrimary success
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #133986'
+                name: color-buttonSecondary
+                label: Color buttonSecondary
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #133986'
+                name: color-buttonSecondary-active
+                label: Color buttonSecondary active
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #8f99a3'
+                name: color-buttonSecondary-disabled
+                label: Color buttonSecondary disabled
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #e85a4a'
+                name: color-buttonSecondary-error
+                label: Color buttonSecondary error
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #133986'
+                name: color-buttonSecondary-focus
+                label: Color buttonSecondary focus
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #1a4db3'
+                name: color-buttonSecondary-hover
+                label: Color buttonSecondary hover
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #29c768'
+                name: color-buttonSecondary-success
+                label: Color buttonSecondary success
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #2e3338'
+                name: color-default
+                label: Color default
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #e85a4a'
+                name: color-error
+                label: Color error
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #2e3338'
+                name: color-input
+                label: Color input
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #fff'
+                name: color-input-checked
+                label: Color input checked
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #8f99a3'
+                name: color-input-disabled
+                label: Color input disabled
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #9e2215'
+                name: color-input-error
+                label: Color input error
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #2e3338'
+                name: color-input-focus
+                label: Color input focus
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #2e3338'
+                name: color-input-hover
+                label: Color input hover
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #8f99a3'
+                name: color-inputIcon
+                label: Color inputIcon
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #2e3338'
+                name: color-inputLabel
+                label: Color inputLabel
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #1a4db3'
+                name: color-link
+                label: Color link
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #1a4db3'
+                name: color-link-active
+                label: Color link active
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #1a4db3'
+                name: color-link-focus
+                label: Color link focus
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #0d59f2'
+                name: color-link-hover
+                label: Color link hover
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #29c768'
+                name: color-success
+                label: Color success
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+publish_mode: editorial_workflow
